@@ -62,9 +62,14 @@ async function login() {
     console.log(response)
     alert("Login successful");
     if (response.status === 200) {
+
+      
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userId', response.data.userId);
+                 localStorage.setItem('user', response.data.name);
+
     }
-     window.location.href = "./expense.html";
+     window.location.href = "chat.html";
   } catch (error) {
     console.log(error)
     if (error.response) {
@@ -88,41 +93,41 @@ signUpBtn.addEventListener("click", (e) => {
 
 
 
-const forgotPasswordLink = document.getElementById("forgotPasswordLink");
-const forgotPasswordModal = document.getElementById("forgotPasswordModal");
-const closeModalBtn = document.getElementById("closeModalBtn");
-const resetPasswordBtn = document.getElementById("resetPasswordBtn");
-const forgotPasswordEmail = document.getElementById("forgotPasswordEmail");
+// const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+// const forgotPasswordModal = document.getElementById("forgotPasswordModal");
+// const closeModalBtn = document.getElementById("closeModalBtn");
+// const resetPasswordBtn = document.getElementById("resetPasswordBtn");
+// const forgotPasswordEmail = document.getElementById("forgotPasswordEmail");
 
-forgotPasswordLink.addEventListener("click", (event) => {
-  event.preventDefault();
-  forgotPasswordModal.style.display = "block";
-});
+// forgotPasswordLink.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   forgotPasswordModal.style.display = "block";
+// });
 
-closeModalBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-  forgotPasswordModal.style.display = "none";
-});
+// closeModalBtn.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   forgotPasswordModal.style.display = "none";
+// });
 
-resetPasswordBtn.addEventListener("click", async (event) => {
-  event.preventDefault();
-  const email = forgotPasswordEmail.value;
-  const obj = { email: email };
+// resetPasswordBtn.addEventListener("click", async (event) => {
+//   event.preventDefault();
+//   const email = forgotPasswordEmail.value;
+//   const obj = { email: email };
 
-  try {
-    const response = await axios.post(
-      "http://localhost:3000/password/forgotPasswordMail",
-      obj
-    );
+//   try {
+//     const response = await axios.post(
+//       "http://localhost:3000/password/forgotPasswordMail",
+//       obj
+//     );
 
-    if (response.status === 200) {
-      alert(`Link sent to ${email} to create a new password`);
-      forgotPasswordModal.style.display = "none";
-    } else {
-      alert("Error sending the reset password link.");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("An error occurred. Please try again later.");
-  }
-});
+//     if (response.status === 200) {
+//       alert(`Link sent to ${email} to create a new password`);
+//       forgotPasswordModal.style.display = "none";
+//     } else {
+//       alert("Error sending the reset password link.");
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     alert("An error occurred. Please try again later.");
+//   }
+// });

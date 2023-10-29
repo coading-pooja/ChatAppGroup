@@ -65,7 +65,10 @@ const signup = async (req, res) => {
       
             if (result==true) {
                 console.log('Credentials are valid');
-                res.status(200).json({ message: 'Logged in Sucessfully',token: generateAccessToken(user.id, user.name)})
+                const token =  generateAccessToken(user.id, user.name)
+                const userId = jwt.decode(token).userId;
+                const name = jwt.decode(token).name;
+                res.status(200).json({ message: 'Logged in Sucessfully',token: generateAccessToken(user.id, user.name),userId:userId,name:name})
             }
             else {
                 console.log('Credentials are not valid');
